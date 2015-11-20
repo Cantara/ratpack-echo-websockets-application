@@ -2,6 +2,7 @@ package no.cantara.ratpacksample;
 
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
+import no.cantara.ratpacksample.echo.EchoWebsocketRequestUpgradeHandler;
 import no.cantara.ratpacksample.freemarkersupport.FreemarkerModel;
 import no.cantara.ratpacksample.freemarkersupport.FreemarkerModule;
 import no.cantara.ratpacksample.hello.HelloModule;
@@ -49,6 +50,10 @@ public class Main {
                                 .get(freemarkerHandler("hello/index.ftl"))
                                 .get(":name", PathSpecificHandler.class)
                                 .get(IndexHandler.class)
+                        )
+                        .prefix("echo", chain -> chain
+                                .get(freemarkerHandler("echo/echo.ftl"))
+                                .get("echows", new EchoWebsocketRequestUpgradeHandler())
                         )
                         // root path serves index file
                         .get(freemarkerHandler("index.ftl"))
