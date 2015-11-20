@@ -2,6 +2,7 @@ package no.cantara.ratpacksample;
 
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
+import no.cantara.ratpacksample.freemarkersupport.FreemarkerModel;
 import no.cantara.ratpacksample.hello.HelloModule;
 import no.cantara.ratpacksample.hello.IndexHandler;
 import no.cantara.ratpacksample.hello.PathSpecificHandler;
@@ -41,12 +42,38 @@ public class Main {
                             chain.get("health/:name?", new HealthCheckHandler());
                         })
                         .prefix("hello", chain -> chain
+                                .get(freemarkerHandler("hello/index.ftl"))
                                 .get(":name", PathSpecificHandler.class)
                                 .get(IndexHandler.class)
                         )
+                        // root path serves index file
+                        .get(freemarkerHandler("index.ftl"))
+
+                        .files(f -> f.path("js").dir("assets/js"))
+                        .files(f -> f.path("css").dir("assets/css"))
+
+                        // redirect index* to root path
+                        .prefix("index", chain -> chain.redirect(301, "/"))
+                        .path(":name?", ctx -> {
+                            String name = ctx.getPathTokens().get("name");
+                            if (name.startsWith("index")) {
+                                ctx.redirect("/");
+                            } else {
+                                ctx.next();
+                            }
+                        })
+
                         .all(chain -> chain.notFound())
                 )
         );
+    }
+
+    private static Handler freemarkerHandler(String template) {
+        return freemarkerHandler(new FreemarkerModel(template));
+    }
+
+    private static Handler freemarkerHandler(FreemarkerModel object) {
+        return ctx -> ctx.render(object);
     }
 
     private static Handler requestCountMetricsHandler() {
