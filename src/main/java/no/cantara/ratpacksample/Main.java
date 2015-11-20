@@ -1,5 +1,6 @@
 package no.cantara.ratpacksample;
 
+import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
 import no.cantara.ratpacksample.hello.HelloModule;
 import no.cantara.ratpacksample.hello.IndexHandler;
@@ -10,6 +11,7 @@ import ratpack.dropwizard.metrics.MetricsWebsocketBroadcastHandler;
 import ratpack.error.ClientErrorHandler;
 import ratpack.error.internal.DefaultDevelopmentErrorHandler;
 import ratpack.guice.Guice;
+import ratpack.handling.Handler;
 import ratpack.health.HealthCheckHandler;
 import ratpack.server.BaseDir;
 import ratpack.server.RatpackServer;
@@ -33,6 +35,7 @@ public class Main {
                         .bind(ClientErrorHandler.class, DefaultDevelopmentErrorHandler.class)
                 ))
                 .handlers(rootChain -> rootChain
+                        .all(requestCountMetricsHandler())
                         .prefix("admin", chain -> {
                             chain.get("metrics", new MetricsWebsocketBroadcastHandler());
                             chain.get("health/:name?", new HealthCheckHandler());
@@ -44,5 +47,13 @@ public class Main {
                         .all(chain -> chain.notFound())
                 )
         );
+    }
+
+    private static Handler requestCountMetricsHandler() {
+        return ctx -> {
+            MetricRegistry metricRegistry = ctx.get(MetricRegistry.class);
+            metricRegistry.counter("request-count").inc();
+            ctx.next();
+        };
     }
 }
