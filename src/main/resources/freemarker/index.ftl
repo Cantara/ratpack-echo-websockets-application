@@ -11,5 +11,6 @@
 </head>
 <body>
     <div><a href="/hello">Hello-World page</a></div>
+    <div>Try out the Ratpack WebSockets <a href="/echo">Echo</a> page!</div>
 </body>
 </html>
