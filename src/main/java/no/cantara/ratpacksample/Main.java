@@ -3,6 +3,7 @@ package no.cantara.ratpacksample;
 import com.codahale.metrics.MetricRegistry;
 import com.google.common.collect.ImmutableMap;
 import no.cantara.ratpacksample.freemarkersupport.FreemarkerModel;
+import no.cantara.ratpacksample.freemarkersupport.FreemarkerModule;
 import no.cantara.ratpacksample.hello.HelloModule;
 import no.cantara.ratpacksample.hello.IndexHandler;
 import no.cantara.ratpacksample.hello.PathSpecificHandler;
@@ -34,6 +35,7 @@ public class Main {
                                 .webSocket(websocketConfig -> {
                                 })
                         )
+                        .moduleConfig(FreemarkerModule.class, new FreemarkerModule.Config().templateLoadingPath("/freemarker"))
                         .module(HelloModule.class)
                         .bind(ClientErrorHandler.class, DefaultDevelopmentErrorHandler.class)
                 ))
