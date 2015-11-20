@@ -17,6 +17,8 @@ import ratpack.health.HealthCheckHandler;
 import ratpack.server.BaseDir;
 import ratpack.server.RatpackServer;
 
+import java.nio.file.Paths;
+
 public class Main {
     public static void main(String... args) throws Exception {
         RatpackServer.start(server -> server
@@ -52,6 +54,8 @@ public class Main {
                         .files(f -> f.path("js").dir("assets/js"))
                         .files(f -> f.path("css").dir("assets/css"))
 
+                        .get("favicon.ico", sendFileHandler("assets/ico/3dlb-3d-Lock.ico"))
+
                         // redirect index* to root path
                         .prefix("index", chain -> chain.redirect(301, "/"))
                         .path(":name?", ctx -> {
@@ -66,6 +70,10 @@ public class Main {
                         .all(chain -> chain.notFound())
                 )
         );
+    }
+
+    private static Handler sendFileHandler(String path) {
+        return ctx -> ctx.getResponse().sendFile(Paths.get(MainCopy.class.getClassLoader().getResource(path).toURI()));
     }
 
     private static Handler freemarkerHandler(String template) {
