@@ -7,7 +7,6 @@ public class HelloModule extends AbstractModule {
     protected void configure() {
         bind(IndexHandler.class);
         bind(PathSpecificHandler.class);
-        bind(SecurityHandler.class);
         bind(HelloHealthCheck.class);
     }
 }
