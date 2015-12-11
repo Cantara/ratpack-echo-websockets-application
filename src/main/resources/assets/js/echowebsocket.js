@@ -1,4 +1,5 @@
-var wsuri = "ws://localhost:5050/echo/echows";
+var wshost = location.origin.replace(/^http/, 'ws');
+var wspath ="/echo/echows";
 var wsout;
 
 function init() {
@@ -7,7 +8,7 @@ function init() {
 }
 
 function wsconnect() {
-    websocket = new WebSocket(wsuri);
+    websocket = new WebSocket(wshost+wspath);
     websocket.onopen = function (evt) {
         onOpen(evt)
     };
