@@ -9,14 +9,5 @@ public class PathSpecificHandler implements Handler {
     @Override
     public void handle(Context ctx) throws Exception {
         ctx.render("Hello " + ctx.getPathTokens().get("name") + "!");
-
-        /*
-        WebSockets.websocketBroadcast(ctx, new Publisher<String>() {
-            @Override
-            public void subscribe(Subscriber<? super String> s) {
-                toString();
-            }
-        });
-        */
     }
 }

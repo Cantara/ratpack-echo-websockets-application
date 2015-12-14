@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Ratpack - Hello index</title>
-    <link href="/css/layout.css" rel="stylesheet">
+    <link href="${contextRoot}/css/layout.css" rel="stylesheet">
 </head>
 <body>
     <div>Hello Ratpack!</div>

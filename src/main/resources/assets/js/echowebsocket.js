@@ -1,5 +1,5 @@
 var wshost = location.origin.replace(/^http/, 'ws');
-var wspath ="/echo/echows";
+var wspath ="/ratpacksample/echo/echows";
 var wsout;
 
 function init() {

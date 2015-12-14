@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Ratpack - WebSocket Test</title>
-    <link href="/css/layout.css" rel="stylesheet">
-    <script language="javascript" type="text/javascript" src="/js/echowebsocket.js"></script>
+    <link href="${contextRoot}/css/layout.css" rel="stylesheet">
+    <script language="javascript" type="text/javascript" src="${contextRoot}/js/echowebsocket.js"></script>
 </head>
 <body>
     <h2>WebSocket Test</h2>

@@ -7,10 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Ratpack - Mainpage</title>
-    <link href="/css/layout.css" rel="stylesheet">
+    <link href="${contextRoot}/css/layout.css" rel="stylesheet">
 </head>
 <body>
-    <div><a href="/hello">Hello-World page</a></div>
-    <div>Try out the Ratpack WebSockets <a href="/echo">Echo</a> page!</div>
+    <div><a href="${contextRoot}/hello">Hello-World page</a></div>
+    <div>Try out the Ratpack WebSockets <a href="${contextRoot}/echo">Echo</a> page!</div>
 </body>
 </html>
