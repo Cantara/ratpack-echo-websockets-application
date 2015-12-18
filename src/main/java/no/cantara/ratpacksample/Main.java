@@ -51,8 +51,8 @@ public class Main {
     }
 
     private Function<Registry, Registry> registry() {
-        return Guice.registry(b -> b
-                .module(new RatpackGuiceConfigModule(b.getServerConfig()))
+        return Guice.registry(bindings -> bindings
+                .module(new RatpackGuiceConfigModule(bindings.getServerConfig()))
                 .module(new EchoModule())
                 .moduleConfig(DropwizardMetricsModule.class, new DropwizardMetricsConfig()
                         .jmx(jmxConfig -> jmxConfig.enable(true))
