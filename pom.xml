@@ -69,18 +69,18 @@
     <dependency>
       <groupId>no.cantara</groupId>
       <artifactId>ratpack-freemarker</artifactId>
-      <version>0.3</version>
+      <version>0.5</version>
     </dependency>
     <dependency>
       <groupId>no.cantara</groupId>
       <artifactId>ratpack-guice-config</artifactId>
-      <version>0.3</version>
+      <version>0.5</version>
     </dependency>
     <dependency>
       <groupId>io.ratpack</groupId>
       <artifactId>ratpack-dropwizard-metrics</artifactId>
       <version>${ratpack.version}</version>
- <exclusions>
+          <exclusions>
                 <exclusion>
                     <groupId>org.yaml</groupId>
                     <artifactId>snakeyaml</artifactId>
@@ -125,8 +125,17 @@
                     <groupId>io.netty</groupId>
                     <artifactId>netty-codec-http</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.google.inject</groupId>
+                    <artifactId>guice</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
 
-            </exclusions>    </dependency>
+            </exclusions>   
+     </dependency>
     <dependency>
       <groupId>org.freemarker</groupId>
       <artifactId>freemarker</artifactId>
