@@ -9,7 +9,7 @@
 
     <groupId>no.cantara</groupId>
     <artifactId>ratpack-echo-websockets-application</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <scm>
@@ -17,7 +17,7 @@
         </developerConnection>
         <connection>scm:git:git@github.com:Cantara/ratpack-echo-websockets-application.git</connection>
         <url>https://github.com/Cantara/ratpack-echo-websockets-application</url>
-        <tag>ratpack-echo-websockets-application-1.0.8</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
