@@ -64,16 +64,30 @@
         <logback.version>1.6.3</logback.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- Align every Netty module (including the ones ratpack pulls in) on one
+                 patched release; see the Netty advisories of 2026-09. -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.2.18.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>no.cantara</groupId>
             <artifactId>ratpack-freemarker</artifactId>
-            <version>0.5.26</version>
+            <version>0.5.28</version>
         </dependency>
         <dependency>
             <groupId>no.cantara</groupId>
             <artifactId>ratpack-guice-config</artifactId>
-            <version>0.34</version>
+            <version>0.36</version>
         </dependency>
         <dependency>
             <groupId>io.ratpack</groupId>
